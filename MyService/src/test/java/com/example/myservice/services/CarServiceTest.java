@@ -62,6 +62,21 @@ public class CarServiceTest {
     }
 
     @Test
+    public void testUpdatePrice() {
+        Car car = new Car("ABC123", "Toyota", 15000.0);
+        carService.addCar(car);
+        boolean updated = carService.updatePrice("ABC123", 12000.0);
+        assertTrue(updated);
+        assertEquals(12000.0, carService.getCar("ABC123").getPrice());
+    }
+
+    @Test
+    public void testUpdatePriceCarNotFound() {
+        boolean updated = carService.updatePrice("NOTFOUND", 10000.0);
+        assertFalse(updated);
+    }
+
+    @Test
     public void testAddMultipleCars() {
         Car car1 = new Car("ABC123", "Toyota", 15000.0);
         Car car2 = new Car("XYZ789", "Honda", 18000.0);

@@ -27,4 +27,11 @@ public class CarService {
     public boolean deleteCar(String plateNumber) {
         return cars.removeIf(car -> car.getPlateNumber().equals(plateNumber));
     }
+
+    public boolean updatePrice(String plateNumber, double newPrice) {
+        Car car = getCar(plateNumber);
+        if (car == null) return false;
+        car.setPrice(newPrice);
+        return true;
+    }
 }

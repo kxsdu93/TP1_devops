@@ -64,6 +64,20 @@ public class RentServiceRestTest {
     }
 
     @Test
+    public void testUpdatePrice() throws Exception {
+        Car car = new Car("ABC123", "Toyota", 15000.0);
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        mockMvc.perform(post("/cars")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(car)));
+
+        mockMvc.perform(put("/cars/ABC123")
+                .param("price", "12000.0"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void testGetCarByPlateNumber() throws Exception {
         Car car = new Car("ABC123", "Toyota", 15000.0);
         ObjectMapper objectMapper = new ObjectMapper();

@@ -37,4 +37,9 @@ public class RentServiceRest {
         return carService.deleteCar(plateNumber);
     }
 
+    @PutMapping("/cars/{plateNumber}")
+    public boolean updatePrice(@PathVariable String plateNumber, @RequestParam double price){
+        return carService.updatePrice(plateNumber, price);
+    }
+
 }
